@@ -4,13 +4,74 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script defer src="./build/bundle.js"></script>
+    <title>Text Checker</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="./build/bundle.css">
 </head>
 
 <body>
-    <my-beispiel></my-beispiel>
-    <input type="text" id="myInput" />
+
+    <nav>
+        <div class="logo">
+            <a href="#">
+                LOGO
+            </a>
+        </div>
+
+        <div class="navi">
+            <ul>
+                <li>
+                    <a href="#">Startseite</a>
+                </li>
+                <li>
+                    <a href="#">Platzhalter</a>
+                </li>
+                <li>
+                    <a href="#">Platzhalter</a>
+                </li>
+                <li>
+                    <a href="#">Platzhalter</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+
+        <div class="row textinput">
+            <div class="col-75">
+                <div class="textarea">
+                    <textarea id="text-1"></textarea>
+                </div>    
+            </div>
+            <div class="col-25">
+                <div class="textproperties">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="content-element">
+            <div class="container">
+                <div class="headline">
+                    <h2>Keywords</h2>
+                </div>
+
+                <div class="keyword-list">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <script defer src="./build/bundle.js"></script>
 </body>
 
 </html>

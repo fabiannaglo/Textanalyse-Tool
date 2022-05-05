@@ -1,0 +1,168 @@
+$maincolor: #2ab7fc;
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    padding-top: 60px;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+nav{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 60px;
+    
+    background-color: #000;
+
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+
+
+    .logo{
+        a{
+            display: block;
+            height: 100%;
+            background-color: #fff;
+            color: #000;
+        }
+    }
+
+    .navi{
+
+        ul{
+            height: 100%;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            list-style: none;
+            margin:0;
+            padding:0 30px 0 0;
+
+            li{
+                a{
+                    color: #fff;
+                    text-transform: uppercase;
+                    font-weight: 500;
+                    font-size: 14px;
+                    letter-spacing: 0.5px;
+                    transition: 0.15s ease-in-out;
+                }
+
+                a:hover,
+                a:focus,
+                a:active{
+                    color: $maincolor;
+                }
+            }
+
+            li + li{
+                margin-left: 30px;
+            }
+        }
+    }
+}
+
+
+.row{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    .col-75{
+        width: 75%;
+
+        .textarea{
+            height: 100%;
+        }
+    }
+
+    .col-25{
+        background-color: $maincolor;
+        width: 25%;
+    }
+}
+
+.textarea{
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+
+    textarea{
+        resize: none;
+        width: 100%;
+        height: 100%;
+        min-height: 350px;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        padding:30px;
+    }
+}
+
+.textproperties{
+    padding:30px;
+    overflow: hidden;
+    border-bottom: 1px solid $maincolor;
+
+    .prop-item{
+        color: #000;
+
+        .prop-name{
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .prop-value{
+        }
+    }
+
+    .prop-item + .prop-item{
+        margin-top: 10px;
+    }
+
+}
+
+.content{
+
+    .content-element{
+        padding:90px 0;
+    }
+
+    .container{
+        width: 1200px;
+        max-width: 100%;
+        margin:0 auto;
+    }
+
+    .row.textinput{
+        overflow: hidden;
+    }
+
+    .headline{
+        padding:0 30px;
+
+        h2{
+            font-size: 48px;
+            text-align: center;
+            margin:0;
+        }
+    }
+}

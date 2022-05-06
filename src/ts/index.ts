@@ -10,6 +10,7 @@ window.onload = () => {
 
 const text_1 = document.querySelector('#text-1') as HTMLTextAreaElement;
 const textproperties = document.querySelector('.textproperties') as HTMLDivElement;
+const keywordList = document.querySelector('.keyword-list') as HTMLDivElement;
 
 
 function loaded(){
@@ -31,7 +32,7 @@ function funktionenZuweisen(){
 }
 
 function textAnalysieren(text: string){
-  let textSplitted = text.replace(/[^a-zA-Z0-9 ]/g, ' ');
+  let textSplitted = text.replace(/[^a-zA-Z0-9üÜöÖäÄß ]/g, ' ');
   textSplitted = textSplitted.replace(/ /g, ',');
   textSplitted = textSplitted.replace(/,,/g, ',');
 
@@ -103,7 +104,7 @@ function getTextproperties(text:any, textArray:any){
 
   for(let x=0; x<saetze.length; x++){
     let aktuellerSatz = saetze[x];
-    aktuellerSatz = aktuellerSatz.replace(/[^a-zA-Z0-9 ]/g, ' ');
+    aktuellerSatz = aktuellerSatz.replace(/[^a-zA-Z0-9üÜöÖäÄß ]/g, ' ');
     aktuellerSatz = aktuellerSatz.replace(/ /g, ',');
     aktuellerSatz = aktuellerSatz.replace(/,,/g, ',');
   
@@ -170,6 +171,7 @@ function getTextproperties(text:any, textArray:any){
 
 function loadedClear(){
   text_1.value = '';
+  keywordList.innerHTML = '';
 
   createTextProp("Zeichenanzahl", "-", "textlaenge");
   createTextProp("Anzahl der Wörter", "-", "wortanzahl");
@@ -181,6 +183,7 @@ function loadedClear(){
 
 function clearAll(){  
   textproperties.innerHTML = '';
+  keywordList.innerHTML = '';
 }
 
 function createTextProp(title: string, inhalt: any, cssClass: string){
@@ -199,5 +202,52 @@ function createTextProp(title: string, inhalt: any, cssClass: string){
 function getKeywords(textArray: any){
 
   // Hier weitermachen
+
+  textArray = textArray.sort();
+
+  var countedArray = [];
+  var counter = 0;
+
+  for(let i=0; i<textArray.length; i++){
+
+
+    if(i == (textArray.length - 1)){
+      // Letztes Array Element
+      counter++;
+      countedArray.push([textArray[i], counter]);
+    }
+    else{
+      let nextElem = textArray[i+1];
+
+      if(nextElem != textArray[i]){
+        counter++;
+        countedArray.push([textArray[i], counter]);
+        counter = 0;
+      }
+      else{
+        counter++;
+      }
+    }
+  }
+
+  countedArray.sort((a,b) => <any>b[1] - <any>a[1]);
+
+  console.log(countedArray);
+
+  keywordList
+
+  for(let i=0; i<countedArray.length; i++){
+    createKeyword(countedArray[i]);
+  }
+}
+
+function createKeyword(arrElem:any){
+
+  let kwItem = document.createElement('div');
+  kwItem.className = 'keyword-item';
+  kwItem.innerHTML += '<div class="keyword-name"><span class="name">Keyword: </span><span class="value">' + arrElem[0] + '</span></div>';
+  kwItem.innerHTML += '<div class="keyword-amount"><span class="name">Anzahl: </span><span class="value">' + arrElem[1] + '</span></div>';
+
+  keywordList.appendChild(kwItem);
 
 }

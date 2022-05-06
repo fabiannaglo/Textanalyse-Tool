@@ -3,32 +3,62 @@
 import '../css/style.scss';
 
 window.onload = () => {
-
   loaded();
-
 };
+
+window.onmousemove = (e) => {
+  mouseMove(e);
+}
+
+function mouseMove(e:any){
+
+  let posTop = e.clientY;
+  posTop = posTop - (cursor.clientWidth/2);
+  let posLeft = e.clientX;
+  posLeft = posLeft - (cursor.clientHeight/2);
+
+
+  cursor.style.top = posTop + 'px';
+  cursor.style.left = posLeft + 'px';
+}
 
 const text_1 = document.querySelector('#text-1') as HTMLTextAreaElement;
 const textproperties = document.querySelector('.textproperties') as HTMLDivElement;
 const keywordList = document.querySelector('.keyword-list') as HTMLDivElement;
+const cursor = document.querySelector('.cursor') as HTMLDivElement;
+const modeButton = document.querySelector('.mode') as HTMLDivElement;
 
 
 function loaded(){
-  
   loadedClear();
-
   funktionenZuweisen();
-
 }
 
 function funktionenZuweisen(){
-  
   text_1?.addEventListener('input', function(){
     let text = text_1.value;
 
-    textAnalysieren(text);
-  })
+    if(text.length <= 0){
+      clearAll();
+      loadedClear();
+    }
+    else{
+      textAnalysieren(text);
+    }
+  });
 
+  modeButton.addEventListener('click', changeMode);
+}
+
+function changeMode(){
+  if(document.body.classList.contains('light')){
+    document.body.classList.remove('light');
+    document.body.classList.add('dark');
+  }
+  else{
+    document.body.classList.remove('dark');
+    document.body.classList.add('light');
+  }
 }
 
 function textAnalysieren(text: string){
@@ -171,7 +201,10 @@ function getTextproperties(text:any, textArray:any){
 
 function loadedClear(){
   text_1.value = '';
-  keywordList.innerHTML = '';
+  keywordList.innerHTML = '<span class="no-content">Fügen Sie einen Text ein, um die Keywords zu analysieren.</span>';
+
+  const noContent = document.querySelector('.no-content') as HTMLSpanElement;
+  noContent.classList.remove('hidden');
 
   createTextProp("Zeichenanzahl", "-", "textlaenge");
   createTextProp("Anzahl der Wörter", "-", "wortanzahl");
@@ -179,11 +212,17 @@ function loadedClear(){
   createTextProp("Durchschnittliche Wortlänge", "-", "dWortlaenge");
   createTextProp("Durchschnittliche Satzlänge", "-", "dSatzlaenge");
   createTextProp("Lesezeit", "-", "lesezeit");
+
+  keywordList.removeAttribute('style');
 }
 
 function clearAll(){  
   textproperties.innerHTML = '';
-  keywordList.innerHTML = '';
+  keywordList.innerHTML = '<span class="no-content">Fügen Sie einen Text ein, um die Keywords zu analysieren.</span>';
+
+
+  const noContent = document.querySelector('.no-content') as HTMLSpanElement;
+  noContent.classList.remove('hidden');
 }
 
 function createTextProp(title: string, inhalt: any, cssClass: string){
@@ -232,22 +271,48 @@ function getKeywords(textArray: any){
 
   countedArray.sort((a,b) => <any>b[1] - <any>a[1]);
 
-  console.log(countedArray);
-
-  keywordList
+  const noContent = document.querySelector('.no-content') as HTMLSpanElement;
+  noContent.classList.add('hidden');
 
   for(let i=0; i<countedArray.length; i++){
-    createKeyword(countedArray[i]);
+    createKeyword(countedArray[i], textArray);
+  }
+
+  if(document.querySelector('.keyword-item') as HTMLDivElement){
+    var keywordItems = document.querySelectorAll('.keyword-item');
+
+    if(keywordItems.length >= 20){
+      keywordList.style.height = 400 + 'px';
+
+      let more = document.createElement('div');
+      more.className = 'more-btn';
+      more.innerHTML = 'Mehr laden ...';
+      more.addEventListener('click', moreKeywords);
+      keywordList.appendChild(more);
+    }
   }
 }
 
-function createKeyword(arrElem:any){
-
+function createKeyword(arrElem:any, textArray:any){
   let kwItem = document.createElement('div');
   kwItem.className = 'keyword-item';
   kwItem.innerHTML += '<div class="keyword-name"><span class="name">Keyword: </span><span class="value">' + arrElem[0] + '</span></div>';
   kwItem.innerHTML += '<div class="keyword-amount"><span class="name">Anzahl: </span><span class="value">' + arrElem[1] + '</span></div>';
 
-  keywordList.appendChild(kwItem);
 
+  let rate = textArray.length;
+  rate = arrElem[1] / rate * 100;
+  rate = Math.round(rate * 100) / 100;
+
+
+  kwItem.innerHTML += '<div class="keyword-rate"><span class="name">Anteil: </span><span class="value">' + rate + '%</span></div>';
+
+  keywordList.appendChild(kwItem);
+}
+
+function moreKeywords(){
+  keywordList.style.height = keywordList.scrollHeight + 'px';
+  
+  let more = document.querySelector('.more-btn') as HTMLDivElement;
+  more.outerHTML = '';
 }

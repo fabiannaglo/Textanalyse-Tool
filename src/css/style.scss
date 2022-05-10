@@ -35,7 +35,7 @@ a{
     text-shadow: 0 0 10px rgba(0,0,0,0.05);
     border-radius: 100%;
     border: 3px solid $maincolor;
-    position: absolute;
+    position: fixed;
     z-index: 99;
     pointer-events: none;
     mix-blend-mode: difference;
@@ -235,9 +235,6 @@ nav{
             font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
-        }
-
-        .prop-value{
         }
     }
 

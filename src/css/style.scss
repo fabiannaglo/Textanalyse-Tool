@@ -131,6 +131,12 @@ nav{
                 }
             }
 
+            li.active{
+                a{
+                    color: $maincolor;
+                }
+            }
+
             li + li{
                 margin-left: 30px;
             }

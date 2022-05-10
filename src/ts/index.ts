@@ -6,6 +6,7 @@ import { mouseMove } from "./customCursor";
 import { resetTextproperties, getTextproperties } from "./textproperties";
 import { resetKeywords, getKeywords } from "./keywords";
 import { changeMode } from "./darkmode";
+import { uniqueCheckbox, getBlindtext } from "./blindtext";
 
 
 if(document.body.id == "home"){ // Durch die if-Abfrage wird die Funktion "loaded" nur auf der Startseite ausgeführt.
@@ -104,34 +105,13 @@ else if(document.body.id == "blindtextgenerator"){
   }
 
   // Feste Variablen werden definiert
-  const text_2 = document.querySelector('#text-2') as HTMLTextAreaElement;
   const btNumber = document.querySelector('#bt-number') as HTMLInputElement;
   const btType = document.querySelector('#bt-type') as HTMLSelectElement;
   const btAbsaetze = document.querySelector('#bt-absaetze') as HTMLInputElement;
-  const btCheckboxes = document.querySelector('.blindtext-checkboxes') as HTMLDivElement;
 
-
-
-
-  // Blindtext
-  function uniqueCheckbox(){
-    let checkbox = btCheckboxes.querySelectorAll('input[type="checkbox"');
-
-    for(let i: number = 0; i<checkbox.length; i++){
-      checkbox[i].addEventListener('change', function(){
-        for(let x: number = 0; x<checkbox.length; x++){
-          let thisCheckbox = checkbox[x] as HTMLInputElement;
-          thisCheckbox.checked = false;          
-        }
-
-        let clickedCheckbox = event?.target as HTMLInputElement;
-        clickedCheckbox.checked = true;
-      });
-    }
-  }
-  function getBlindtext(){
-
-  }
+  btNumber.addEventListener("input", getBlindtext);
+  btType.addEventListener("change", getBlindtext);
+  btAbsaetze.addEventListener("input", getBlindtext);
 }
 
 // Funktion, die ausgeführt wird, sobald die Maus bewegt wird (Custom Cursor)

@@ -1,7 +1,7 @@
 
 const textproperties = document.querySelector('.textproperties') as HTMLDivElement;
 
-const textpropertiesData = [
+const textpropertiesData: string[][] = [
     ["textlaenge",  "Zeichenanzahl"],
     ["wortanzahl",  "Wortanzahl"],
     ["satzanzahl",  "Satzanzahl"],
@@ -12,6 +12,10 @@ const textpropertiesData = [
 
 
 export function resetTextproperties(): void{
+    /*
+        Die Funktion setzt die Texteigenschaften auf Standard zurück.
+    */
+
     textproperties.innerHTML = "";
   
     for(let i:number=0; i<textpropertiesData.length; i++){
@@ -19,15 +23,24 @@ export function resetTextproperties(): void{
     }
 }
 
-function createTextProp(title: string, inhalt: any, cssClass: string): void{
-    let newProp = document.createElement('div');
+function createTextProp(title: string, inhalt: string, cssClass: string): void{
+    /*
+        Die Funktion erstellt ein neues <div>-Element mit gegebenen Werten
+        für die Texteigenschaften.
+    */
+
+    let newProp = document.createElement('div') as HTMLDivElement;
     newProp.innerHTML = '<div class="prop-name">' + title + '</div>';
     newProp.innerHTML += '<div class="prop-value">' + inhalt + '</div>';
     newProp.className = 'prop-item ' + cssClass;
     textproperties?.appendChild(newProp);
 }
   
-function changeTextProp(inhalt:any, cssClass: string): void{
+function changeTextProp(inhalt: any, cssClass: string): void{
+    /*
+        Die Funktion verändert den Wert einer Texteigenschaft.
+    */
+
     if(document.querySelector('.prop-item.' + cssClass) as HTMLDivElement){
       let item = document.querySelector('.prop-item.' + cssClass) as HTMLDivElement;
       let val = item?.querySelector('.prop-value') as HTMLDivElement;
@@ -35,7 +48,7 @@ function changeTextProp(inhalt:any, cssClass: string): void{
     }
 }
 
-export function getTextproperties(text:any, textArray:any): void{
+export function getTextproperties(text: string, textArray: string[]): void{
     /*
       Die Funktion ermittelt Grundeigenschaften, wie die Zeichen-, Wort- & Satzanzahl im eingegebenen Text.
     */
@@ -80,10 +93,10 @@ export function getTextproperties(text:any, textArray:any): void{
   
   
     // Durchschn. Satzlänge
-    let saetzeArray = [];
+    let saetzeArray: any[] = [];
   
     for(let x:number=0; x<saetze.length; x++){
-      let aktuellerSatz = saetze[x];
+      let aktuellerSatz: any = saetze[x];
       aktuellerSatz = aktuellerSatz.replace(/[^a-zA-Z0-9üÜöÖäÄß ]/g, ' ');
       aktuellerSatz = aktuellerSatz.replace(/ /g, ',');
       aktuellerSatz = aktuellerSatz.replace(/,,/g, ',');
@@ -92,7 +105,7 @@ export function getTextproperties(text:any, textArray:any): void{
         aktuellerSatz = aktuellerSatz.slice(0, -1);
       }
     
-      let aktuelleWoerter = aktuellerSatz.split(",");
+      let aktuelleWoerter: any[] = aktuellerSatz.split(",");
       for(let i:number=0; i<aktuelleWoerter.length; i++){
         if(aktuelleWoerter[i].length <= 0){
           aktuelleWoerter.splice(i, 1);
@@ -109,7 +122,7 @@ export function getTextproperties(text:any, textArray:any): void{
     }
   
   
-    let dSatzlaenge = 0;
+    let dSatzlaenge: number = 0;
     for(let i:number=0; i<saetzeArray.length; i++){
       dSatzlaenge += saetzeArray[i];
     }
@@ -119,15 +132,17 @@ export function getTextproperties(text:any, textArray:any): void{
   
   
     // Lesezeit
-    let lesezeit = wortanzahl / 150; // durchschnittlich liest der Mensch 150 Wörter pro Minute
-    let lesezeitString = lesezeit.toFixed(2);
+    let lesezeit: number = wortanzahl / 150; // durchschnittlich liest der Mensch 150 Wörter pro Minute
+    lesezeit = Math.round(lesezeit * 100) / 100;
+    let lesezeitString: string = lesezeit.toString();
   
     if(lesezeit < 60){
       lesezeitString += ' Minuten'
     }
     if(lesezeit >= 60){
         lesezeit = lesezeit / 60;
-        lesezeitString = lesezeit.toFixed(2);
+        lesezeit = Math.round(lesezeit * 100) / 100;
+        lesezeitString = lesezeit.toString();
         lesezeitString += ' Stunden';
     }
   

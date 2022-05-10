@@ -2,24 +2,28 @@ const keywordList = document.querySelector('.keyword-list') as HTMLDivElement;
 const noContent = document.querySelector('.no-content') as HTMLSpanElement;
 
 export function resetKeywords(): void{
-  if(keywordList.querySelector('.keyword-item')){
-    let keywordItems = keywordList.querySelectorAll('.keyword-item');
+    /*
+        Die Funktion setzt die Keywordliste auf Standard zurück.
+    */
 
-    for(let i:number=0; i<keywordItems.length; i++){
-      keywordItems[i].outerHTML = "";
+    if(keywordList.querySelector('.keyword-item')){
+        let keywordItems = keywordList.querySelectorAll('.keyword-item');
+
+        for(let i:number=0; i<keywordItems.length; i++){
+            keywordItems[i].outerHTML = "";
+        }
+
+        noContent.classList.remove('hidden');
+        keywordList.removeAttribute('style');
     }
 
-    noContent.classList.remove('hidden');
-    keywordList.removeAttribute('style');
-  }
-
-  if(keywordList.querySelector('.more-btn')){
-      let moreBtn = keywordList.querySelector('.more-btn') as HTMLDivElement;
-      moreBtn.outerHTML = "";
-  }
+    if(keywordList.querySelector('.more-btn')){
+        let moreBtn = keywordList.querySelector('.more-btn') as HTMLDivElement;
+        moreBtn.outerHTML = "";
+    }
 }
 
-export function getKeywords(textArray: any): void{
+export function getKeywords(textArray: any[]): void{
     /*
         Die Funktion nimmt die einzelnen Wörter aus dem eingegebenen Text,
         zählt die Anzahl der Vorkommnisse und sortiert den mehrdimensionalen
@@ -30,8 +34,8 @@ export function getKeywords(textArray: any): void{
   
     textArray = textArray.sort(); // Array alphabetisch sortieren
   
-    let countedArray = [];
-    let counter = 0;
+    let countedArray: any[] = [];
+    let counter: number = 0;
   
     for(let i:number=0; i<textArray.length; i++){
       if(i == (textArray.length - 1)){
@@ -40,7 +44,7 @@ export function getKeywords(textArray: any): void{
         countedArray.push([textArray[i], counter]);
       }
       else{
-        let nextElem = textArray[i+1];
+        let nextElem:any = textArray[i+1];
   
         if(nextElem != textArray[i]){
           counter++;
@@ -80,7 +84,7 @@ export function getKeywords(textArray: any): void{
 
         keywordList.style.height = 400 + 'px';
   
-        let more = document.createElement('div');
+        let more = document.createElement('div') as HTMLDivElement;
         more.className = 'more-btn';
         more.innerHTML = 'Mehr laden ...';
         more.addEventListener('click', moreKeywords);
@@ -89,26 +93,24 @@ export function getKeywords(textArray: any): void{
     }
 }
   
-function createKeyword(arrElem:any, textArray:any): void{
+function createKeyword(arrElem:any[], textArray:any[]): void{
     /*
         Die Funktion erstellt ein neues <div>-Element, das ein Keyword enthält.
         Zusätzlich zum Keyword wird noch die Anzahl an Vorkommnissen im Text
         und der prozentuale Anteil dieses Keywords am Gesamttext ausgegeben.
     */
 
-    let kwItem = document.createElement('div');
+    let kwItem = document.createElement('div') as HTMLDivElement;
     kwItem.className = 'keyword-item';
     kwItem.innerHTML += '<div class="keyword-name"><span class="name">Keyword: </span><span class="value">' + arrElem[0] + '</span></div>';
     kwItem.innerHTML += '<div class="keyword-amount"><span class="name">Anzahl: </span><span class="value">' + arrElem[1] + '</span></div>';
   
-  
-    let rate = textArray.length;
+    let rate: number = textArray.length;
     rate = arrElem[1] / rate * 100;
     rate = Math.round(rate * 100) / 100;
   
-  
-    kwItem.innerHTML += '<div class="keyword-rate"><span class="name">Anteil: </span><span class="value">' + rate + '%</span></div>';
-  
+
+    kwItem.innerHTML += '<div class="keyword-rate"><span class="name">Anteil: </span><span class="value">' + rate + '%</span></div>'; 
     keywordList.appendChild(kwItem);
 }
   

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Textanalyse Tool</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="./build/bundle.css">
+    <script defer src="./build/bundle.js"></script>
+</head>
+
+<body id="blindtextgenerator" class="light">
+
+    <div class="cursor"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <span>Textanalyse Tool</span>
+                </a>
+            </div>
+
+            <div class="navi">
+                <ul>
+                    <li>
+                        <a title="Textanalyse Tool" href="index.html">Textanalyse</a>
+                    </li>
+                    <li class="active">
+                        <a title="Informationen zum Projekt" href="blindtextgenerator.html">Blindtext-Generator</a>
+                    </li>
+                    <li>
+                        <a title="Informationen zum Projekt" href="info.html">Informationen</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+
+        <div class="content-element">
+            <div class="container">
+                <div class="headline">
+                    <h1>Blindtext-Generator</h1>
+                </div>
+                <div class="row blindtext">
+                    <div class="col-75">
+                        <div class="textarea">
+                            <textarea id="text-2"></textarea>
+                        </div>    
+                    </div>
+                    <div class="col-25">
+                        <div class="blindtext-options">
+                            <div class="blindtext-general">
+                                <div class="input">
+                                    <label for="bt-number">Anzahl</label>
+                                    <input type="number" id="bt-number" name="bt-number" value="100" min="1" max="99999" />
+                                </div>
+                                <div class="input">
+                                    <label for="bt-type">Typ</label>
+                                    <select id="bt-type" name="bt-type">
+                                        <option value="woerter" selected>Wörter</option>
+                                        <option value="zeichen">Zeichen</option>
+                                        <option value="saetze">Sätze</option>
+                                    </select>
+                                </div>
+                                <div class="input">
+                                    <label for="bt-absaetze">Absätze</label>
+                                    <input type="number" id="bt-absaetze" name="bt-absaetze" value="1" min="1" max="99999" />
+                                </div>
+                            </div>
+                            
+                            <div class="blindtext-checkboxes">
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="loremipsum" name="loremipsum" />
+                                    <label for="loremipsum">Lorem ipsum</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="loremipsumde" name="loremipsumde" />
+                                    <label for="loremipsumde">Lorem ipsum auf Deutsch</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="lieuropanlingues" name="lieuropanlingues" />
+                                    <label for="lieuropanlingues">Li Europan lingues </label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="hinterdenwortbergen" name="hinterdenwortbergen" />
+                                    <label for="hinterdenwortbergen">Hinter den Wortbergen</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="werther" name="werther" />
+                                    <label for="werther">Werther</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="kafka" name="kafka" />
+                                    <label for="kafka">Kafka</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="trapattoni" name="trapattoni" />
+                                    <label for="trapattoni">Trapattoni '98 </label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="erhoerteleiste" name="erhoerteleiste" />
+                                    <label for="erhoerteleiste">Er hörte leise</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="typoblindtext" name="typoblindtext" />
+                                    <label for="typoblindtext">Typoblindtext</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="webstandards" name="webstandards" />
+                                    <label for="webstandards">Webstandards</label>
+                                </div>
+    
+                                <div class="checkbox-elem">
+                                    <input type="checkbox" id="pangramm" name="pangramm" />
+                                    <label for="pangramm">Pangramm</label>
+                                </div>
+    
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    
+
+    <div class="mode">
+        <div class="inner">
+            <div class="light">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                    <path d="M49.94,0.047c-0.102,0.019-0.204,0.046-0.296,0.074c-1.103,0.25-1.881,1.241-1.853,2.372v14.23
+                        c-0.009,0.852,0.436,1.649,1.177,2.084c0.741,0.426,1.649,0.426,2.39,0c0.741-0.436,1.186-1.232,1.177-2.084V2.493
+                        c0.027-0.686-0.25-1.343-0.741-1.807C51.292,0.213,50.616-0.018,49.94,0.047z M16.144,13.98c-0.89,0.157-1.603,0.806-1.853,1.667
+                        c-0.25,0.871,0.009,1.797,0.667,2.409l10.08,10.08c0.575,0.704,1.492,1.028,2.381,0.825c0.88-0.204,1.575-0.899,1.779-1.779
+                        c0.204-0.89-0.12-1.807-0.824-2.381l-10.08-10.08c-0.491-0.528-1.205-0.797-1.927-0.741C16.292,13.98,16.218,13.98,16.144,13.98z
+                        M83.439,13.98c-0.537,0.074-1.037,0.343-1.408,0.741l-10.079,10.08c-0.704,0.574-1.028,1.491-0.825,2.381
+                        c0.204,0.88,0.899,1.575,1.779,1.779c0.89,0.204,1.807-0.121,2.381-0.825l10.079-10.08c0.741-0.704,0.955-1.807,0.52-2.733
+                        C85.44,14.388,84.459,13.851,83.439,13.98z M49.94,26.209c-0.074,0.018-0.148,0.046-0.223,0.074
+                        c-0.148,0.009-0.296,0.037-0.444,0.074c-0.028,0.028-0.046,0.046-0.074,0.074c-12.581,0.537-22.753,10.784-22.753,23.494
+                        c0,13.054,10.664,23.717,23.717,23.717c13.054,0,23.717-10.663,23.717-23.717c0-12.664-10.089-22.874-22.605-23.494
+                        c-0.083,0-0.139-0.074-0.222-0.074c-0.241-0.093-0.491-0.139-0.741-0.148c-0.046,0-0.102,0-0.148,0
+                        C50.088,26.209,50.014,26.209,49.94,26.209z M50.014,30.953c0.046,0,0.102,0,0.148,0c0.074,0,0.148,0,0.223,0
+                        c10.376,0.121,18.751,8.569,18.751,18.973c0,10.487-8.486,18.974-18.974,18.974c-10.478,0-18.973-8.486-18.973-18.974
+                        C31.189,39.494,39.601,31.036,50.014,30.953z M2.062,47.554c-1.306,0.186-2.223,1.399-2.038,2.706
+                        c0.186,1.306,1.399,2.224,2.705,2.038h14.23c0.852,0.009,1.649-0.436,2.084-1.177c0.426-0.741,0.426-1.649,0-2.39
+                        c-0.436-0.741-1.232-1.186-2.084-1.177H2.729c-0.074,0-0.148,0-0.222,0s-0.148,0-0.222,0C2.21,47.554,2.136,47.554,2.062,47.554z
+                        M82.698,47.554c-1.306,0.186-2.223,1.399-2.038,2.706c0.186,1.306,1.399,2.224,2.705,2.038h14.23
+                        c0.853,0.009,1.649-0.436,2.084-1.177c0.427-0.741,0.427-1.649,0-2.39c-0.435-0.741-1.231-1.186-2.084-1.177h-14.23
+                        c-0.074,0-0.147,0-0.222,0s-0.148,0-0.223,0S82.772,47.554,82.698,47.554z M26.445,70.975c-0.537,0.074-1.038,0.343-1.408,0.741
+                        l-10.08,10.079c-0.704,0.575-1.028,1.492-0.824,2.381c0.204,0.881,0.898,1.575,1.779,1.779c0.889,0.204,1.806-0.12,2.381-0.824
+                        l10.08-10.08c0.704-0.676,0.917-1.723,0.537-2.622c-0.371-0.898-1.269-1.473-2.242-1.454C26.594,70.975,26.52,70.975,26.445,70.975z
+                        M73.138,70.975c-0.89,0.157-1.603,0.806-1.853,1.668c-0.25,0.87,0.009,1.797,0.667,2.408l10.079,10.08
+                        c0.574,0.704,1.492,1.028,2.381,0.824c0.881-0.204,1.575-0.898,1.779-1.779c0.204-0.889-0.121-1.806-0.825-2.381L75.287,71.716
+                        c-0.444-0.473-1.057-0.732-1.705-0.741c-0.073,0-0.147,0-0.222,0S73.212,70.975,73.138,70.975z M49.94,80.684
+                        c-0.102,0.019-0.204,0.046-0.296,0.074c-1.103,0.25-1.881,1.241-1.853,2.371v14.23c-0.009,0.853,0.436,1.649,1.177,2.085
+                        c0.741,0.426,1.649,0.426,2.39,0c0.741-0.436,1.186-1.232,1.177-2.085v-14.23c0.027-0.686-0.25-1.343-0.741-1.806
+                        C51.292,80.851,50.616,80.619,49.94,80.684z"/>
+                </svg>
+            </div>
+            <div class="dark">
+                <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    width="73px" height="100px" viewBox="0 0 73 100" enable-background="new 0 0 73 100" xml:space="preserve">
+                    <g>
+                        <path d="M61.703,7.158c-14.572-6.796-36.307,0.22-47.825,15.436C1.045,39.55,1.718,63.272,15.486,79.252
+                            C27.531,93.23,49,99.389,61.729,92.516C32.206,72.975,28.073,30.69,61.703,7.158 M72.227,6.876
+                            C54.062,15.98,42.912,29.572,42.932,49.96c0.02,20.372,11.207,33.945,28.797,42.789c-8.635,11.405-37.452,8.843-53.417-4.093
+                            C-3.58,70.918-6.19,38.255,12.357,16.893C30.5-4.005,61.348-3.217,72.227,6.876"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

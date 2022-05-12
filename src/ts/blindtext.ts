@@ -76,9 +76,6 @@ export function getBlindtext(): void{
       blindtextData = pangramm;
     }
 
-    console.log(typeElem.id);
-    console.log(blindtextData.length);
-
     let anzahl: number = parseInt(btNumber.value);
     let absaetze: number = parseInt(btAbsaetze.value);
 

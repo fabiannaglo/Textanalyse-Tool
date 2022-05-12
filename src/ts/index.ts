@@ -122,3 +122,4 @@ window.onmousemove = (e) => {
 // Wechsel zwischen Light- & Darkmode durch einen Button-Klick
 const modeButton = document.querySelector('.mode') as HTMLDivElement;
 modeButton.addEventListener('click', changeMode);
+

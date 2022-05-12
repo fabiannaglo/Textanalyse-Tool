@@ -69,7 +69,7 @@ export function getTextproperties(text: string, textArray: string[]): void{
     // Satzanzahl
     let satzanzahl: any = text;
     const satzzeichen: RegExp = /[.!?]/; // Die Satzzeichen Punkt (.), Ausrufezeichen (!) und Fragezeichen (?) trennen die Sätze. Daher wird hier getrennt.
-    let saetze: any = satzanzahl.split(satzzeichen);
+    let saetze: string[] = satzanzahl.split(satzzeichen);
     satzanzahl = saetze.length - 1;
   
     if(satzanzahl <= 0 && textlaenge >= 1){
@@ -78,14 +78,10 @@ export function getTextproperties(text: string, textArray: string[]): void{
   
   
     // Durchschn. Wortlänge
-    let wortlaengeArray: any[] = [];
-    for(let t:number=0; t<textArray.length; t++){
-      wortlaengeArray.push(textArray[t].length);
-    }
-  
     let dWortlaenge: number = 0;
-    for(let t:number=0; t<wortlaengeArray.length; t++){
-      dWortlaenge += wortlaengeArray[t];
+    
+    for(let t:number=0; t<textArray.length; t++){
+      dWortlaenge += textArray[t].length;
     }
   
     dWortlaenge = dWortlaenge / wortanzahl;

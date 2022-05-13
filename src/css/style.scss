@@ -184,6 +184,7 @@ nav{
     .col-25{
         background-color: $maincolor;
         width: 25%;
+        transition: 0.35s ease-in-out;
     }
 }
 
@@ -291,6 +292,7 @@ nav{
                         outline: none;
                         border: none;
                         padding:10px 10px;
+                        transition: 0.35s ease-in-out;
                     }
 
                     input{
@@ -560,11 +562,24 @@ nav{
             }
         }
 
+        .row .col-25{
+            background-color: #000;
+            border-color: transparent;
+        }
+
+        .blindtext .blindtext-options .blindtext-general .input{
+            input,
+            select{
+                background-color: #1a291e;
+                color: #fff;
+            }
+        }
+
         .textarea{
             border-color: transparent;
             
             textarea{
-                background-color: $darkcolor;
+                background-color: #1a291e;
                 color: #fff;
             }
         }
